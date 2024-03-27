@@ -1,6 +1,9 @@
-name: Conditional env variable
+name: Conditional env 
 
-on: workflow_dispatch
+on:
+    push:
+      branches: [ "main" ]
+  
 
 jobs:
   greeting_job:
