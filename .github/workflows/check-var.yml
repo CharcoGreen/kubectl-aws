@@ -12,7 +12,7 @@ jobs:
       Greeting: Hello
     steps:
       - name: "Say Hello Mona it's Monday"
-        if: ${{ env.IMAGE_TAG == '0.0.2' }}
+        if: ${{ vars.IMAGE_TAG == '0.0.1' }}
         run: echo $First_Name. Today is MERDA!"
         env:
           First_Name: Mona
