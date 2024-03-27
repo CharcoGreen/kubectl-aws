@@ -13,6 +13,6 @@ jobs:
     steps:
       - name: "Say Hello Mona it's Monday"
         if: ${{ vars.IMAGE_TAG == '0.0.1' }}
-        run: echo $First_Name. Today is MERDA!"
+        run: echo "$First_Name. Today is MERDA!"
         env:
           First_Name: Mona
