@@ -14,5 +14,5 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/kubectl-aws:$(date +%s)
-        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/kubectl-aws
+        docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/kubectl-aws:latest
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/kubectl-aws:latest
