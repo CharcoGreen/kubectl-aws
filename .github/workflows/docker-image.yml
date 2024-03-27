@@ -1,11 +1,15 @@
 name: Docker Image CI
 
 env:
-  IMAGE_TAG: "latest"
+  IMAGE_TAG_LATEST: "latest"
+  IMAGE_TAG: "0.0.1"
+  IMAGE_TAG_DEV: "0.0.1-dev"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: 
+    - "main"
+    - "develop"
 
 jobs:
   build:
@@ -17,6 +21,17 @@ jobs:
       run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
     - name: Build and push Docker image
+      if: github.ref == 'refs/heads/main'
       run: |
         docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/kubectl-aws:$IMAGE_TAG
-        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/kubectl-aws:${IMAGE_TAG}
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/kubectl-aws:$IMAGE_TAG
+        docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/kubectl-aws:$IMAGE_TAG ${{ secrets.DOCKER_HUB_USERNAME }}/kubectl-aws:$IMAGE_TAG_LATEST
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/kubectl-aws:$IMAGE_TAG_LATEST
+        
+    - name: Push Docker image to AWS ECR
+      if: github.ref == 'refs/heads/develop'
+      run: |
+        docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/kubectl-aws:$IMAGE_TAG_DEV
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/kubectl-aws:$IMAGE_TAG_DEV
+
+  
