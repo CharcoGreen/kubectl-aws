@@ -18,7 +18,7 @@ _start() {
     docker run --name "${name}" \
         --rm \
         --detach \
-        -v "${HOME}:/root/.aws/credentials" \
+        -v "${HOME}/.aws/credentials:/root/.aws/credentials" \
         -v "$(pwd)/config/aws-kube-config.yaml:/root/.kube/config" \
         "${image}" \
         sleep infinity
