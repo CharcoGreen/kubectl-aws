@@ -5,7 +5,8 @@
 # TODO: parse environments aws credentials 
 
 # ENVIROMENT VARIABLES
-image_name="kubectl-aws"
+name="kubectl-aws"
+image_name="flaco0/kubectl-aws"
 image_ver="0.0.1"
 image="${image_name}:${image_ver}"
 
@@ -14,11 +15,11 @@ image="${image_name}:${image_ver}"
 # Start the docker container
 _start() {
     
-    docker run --name "${image_name}" \
+    docker run --name "${name}" \
         --rm \
         --detach \
         -v "${HOME}:/root/.aws/credentials" \
-        -v "$(pwd)/config/aws-kube-config:/root/.kube/config" \
+        -v "$(pwd)/config/aws-kube-config.yaml:/root/.kube/config" \
         "${image}" \
         sleep infinity
 }
@@ -26,7 +27,7 @@ _start() {
 # Stop the docker container
 _stop() {
 
-    docker stop "${image_name}" 2>/dev/null || echo "Container not running"
+    docker stop "${name}" 2>/dev/null || echo "Container not running"
 }
 
 _build() {
@@ -37,8 +38,8 @@ _build() {
 # Entrypoint
 _run() {
 
-    _build
     _stop
+    _build
     _start
 }
 

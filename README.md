@@ -6,8 +6,11 @@ Minimal Container image to use kubectl in EKS. This container have kubectl and A
 ## TL;DR
 
 ```bash
-docker run --name kubectl-aws-check --rm  -v ${HOME}/.aws/credentials:/root/.aws/credentials  -v $(pwd)/config/aws-kube-config.yaml:/root/.kube/config kubectl-aws:0.0.1 aws --version
-docker run --name kubectl-aws-check --rm  -v ${HOME}/.aws/credentials:/root/.aws/credentials  -v $(pwd)/config/aws-kube-config.yaml:/root/.kube/config kubectl-aws:0.0.1 kubectl version
+docker run --name kubectl-aws --rm  flaco0/kubectl-aws:latest kubectl version
+```
+
+```bash
+docker run --name kubectl-aws --rm  -v ${HOME}/.aws/credentials:/root/.aws/credentials  -v ${HOME}/.kube/config:/root/.kube/config  flaco0/kubectl-aws:latest kubectl version
 ```
 
 ## Requiriments
@@ -16,6 +19,9 @@ docker run --name kubectl-aws-check --rm  -v ${HOME}/.aws/credentials:/root/.aws
 - AWS credentials file
 
 ## HowTo
+
+
+local use
 
 ```bash
 ./run.sh
