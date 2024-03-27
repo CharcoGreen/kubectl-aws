@@ -1,5 +1,3 @@
-# TODO: Add the kubectl version as a build argument
-# TODO: Add the aws-cli version as a build argument
 FROM alpine:3.19.1
 
 LABEL MAINTAINER="Daniel González Cruz <dani.flaco0@gmail.com>"
