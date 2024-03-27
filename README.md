@@ -17,6 +17,7 @@ docker run --name kubectl-aws --rm  -v ${HOME}/.aws/credentials:/root/.aws/crede
 
 - Docker / Podman installed
 - AWS credentials file
+- kubeconfig file
 
 ## APP Versions
 
