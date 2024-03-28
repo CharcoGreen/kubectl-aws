@@ -2,23 +2,23 @@
 
 # Run the program with some arguments or options
 # We go to build, compile and run the program in the best way possible
-# TODO: parse environments aws credentials 
+# TODO: parse environments aws credentials
 
 # ENVIROMENT VARIABLES
 name="kubectl-aws"
 image_name="flaco0/kubectl-aws"
-image_ver="0.0.1"
+image_ver="0.0.1-dev"
 image="${image_name}:${image_ver}"
 
 # Build the docker image
 
 # Start the docker container
 _start() {
-    
+
     docker run --name "${name}" \
         --rm \
         --detach \
-        -v "${HOME}/.aws/credentials:/root/.aws/credentials" \
+        -v "${HOME}/.aws:/root/.aws" \
         -v "$(pwd)/config/aws-kube-config.yaml:/root/.kube/config" \
         "${image}" \
         sleep infinity

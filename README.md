@@ -10,7 +10,7 @@ docker run --name kubectl-aws --rm  flaco0/kubectl-aws:latest kubectl version
 ```
 
 ```bash
-docker run --name kubectl-aws --rm  -v ${HOME}/.aws/credentials:/root/.aws/credentials  -v ${HOME}/.kube/config:/root/.kube/config  flaco0/kubectl-aws:latest kubectl version
+docker run --name kubectl-aws --rm  -v ${HOME}/.aws:/root/.aws  -v ${HOME}/.kube/config:/root/.kube/config  flaco0/kubectl-aws:latest kubectl version
 ```
 
 ## Requiriments
