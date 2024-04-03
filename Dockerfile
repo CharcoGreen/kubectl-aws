@@ -9,6 +9,7 @@ RUN apk add --no-cache aws-cli \
     curl \
     bash \
     git \
+    bash-completion \
     && curl --silent -L https://storage.googleapis.com/kubernetes-release/release/$(curl -Ls https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl \
     && apk --no-cache del curl \
@@ -20,4 +21,7 @@ RUN apk add --no-cache aws-cli \
 COPY config/alias.sh /etc/profile.d/alias.sh
 
 RUN chmod +x /etc/profile.d/alias.sh \
-    && echo "source /etc/profile.d/alias.sh" >> /root/.bashrc
+    && echo "source /etc/profile.d/alias.sh" >> ~/.bashrc \
+    && echo "source /etc/bash/bash_completion.sh" >> ~/.bashrc \
+    && echo "source <(kubectl completion bash)" >> ~/.bashrc \
+    && echo "complete -o default -F __start_kubectl k" >> ~/.bashrc
