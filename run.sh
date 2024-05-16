@@ -5,6 +5,7 @@
 # TODO: parse environments aws credentials
 
 # ENVIROMENT VARIABLES
+cwd=$(readlink -f "$(dirname "${0}")") # Current working directory
 name="kubectl-aws"
 image_name="flaco0/kubectl-aws"
 image_ver="0.0.1-dev"
@@ -19,7 +20,7 @@ _start() {
         --rm \
         --detach \
         -v "${HOME}/.aws:/root/.aws" \
-        -v "$(pwd)/config/aws-kube-config.yaml:/root/.kube/config" \
+        -v "${cwd}/config/aws-kube-config.yaml:/root/.kube/config" \
         "${image}" \
         sleep infinity
 }
@@ -32,7 +33,7 @@ _stop() {
 
 _build() {
 
-    docker build -t "${image}" .
+    docker build -t "${image}" "${cwd}"
 }
 
 # Entrypoint
