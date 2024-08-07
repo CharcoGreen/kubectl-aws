@@ -6,6 +6,7 @@ WORKDIR /root
 
 # Install dependencies and clean up
 RUN apk add --no-cache aws-cli \
+    mandoc \
     curl \
     bash \
     git \
