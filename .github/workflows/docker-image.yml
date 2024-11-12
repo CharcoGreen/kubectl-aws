@@ -2,8 +2,8 @@ name: Docker Image CI
 
 env:
   IMAGE_TAG_LATEST: "latest"
-  IMAGE_TAG: "0.0.1"
-  IMAGE_TAG_DEV: "0.0.1-dev"
+  IMAGE_TAG: "0.0.2"
+  IMAGE_TAG_DEV: "0.0.2-dev"
 
 on:
   push:

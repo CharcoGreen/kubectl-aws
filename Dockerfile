@@ -16,6 +16,11 @@ RUN apk add --no-cache aws-cli \
     && rm -rf /var/cache/apk/* \
     && rm -rf /tmp/*
 
+RUN wget https://releases.hashicorp.com/terraform/1.9.8/terraform_1.9.8_linux_amd64.zip \
+    && unzip terraform_1.9.8_linux_amd64.zip \
+    && rm terraform_1.9.8_linux_amd64.zip \
+    && mv terraform /usr/bin/terraform
+
 #COPY config/aws-cli-credentials /root/.aws/credentials 
 #COPY config/aws-kube-config /root/.kube/config
 COPY config/alias.sh /etc/profile.d/alias.sh

@@ -8,7 +8,7 @@
 cwd=$(readlink -f "$(dirname "${0}")") # Current working directory
 name="kubectl-aws"
 image_name="flaco0/kubectl-aws"
-image_ver="0.0.1-dev"
+image_ver="0.0.2-dev"
 image="${image_name}:${image_ver}"
 
 # Build the docker image
