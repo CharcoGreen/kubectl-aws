@@ -19,8 +19,9 @@ _start() {
     docker run --name "${name}" \
         --rm \
         --detach \
-        -v "${HOME}/.aws:/root/.aws" \
+        -v "${cwd}/config/aws-config.yaml:/root/.aws/config" \
         -v "${cwd}/config/aws-kube-config.yaml:/root/.kube/config" \
+        -v "/mnt/data/Projects/melia/bitbucket:/root/bitbucket" \
         "${image}" \
         sleep infinity
 }
