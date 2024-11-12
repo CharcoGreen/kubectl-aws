@@ -1,2 +1,2 @@
 config/*.yaml
-run.sh
+run-dev-home.sh
